@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v2.14.0
+    hooks:
+      - id: golangci-lint-fmt
+        language_version: "1.27.1"
+      - id: golangci-lint-full
+        # Default hook entry includes --fix; require a clean lint result instead.
+        entry: golangci-lint run
+        language_version: "1.27.1"
+
+  - repo: local
+    hooks:
+      - id: go-test
+        name: go test
+        entry: go test -race ./...
+        language: system
+        pass_filenames: false
+        types: [go]

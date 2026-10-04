@@ -1,0 +1,44 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  automerge: false,
+  extends: [
+    'config:recommended',
+    ':dependencyDashboard',
+    'group:allNonMajor',
+  ],
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: [
+      'before 6am on monday',
+    ],
+  },
+  customManagers: [
+    {
+      customType: 'regex',
+      managerFilePatterns: [
+        '/(^|/)integration_test\\.go$/',
+      ],
+      matchStrings: [
+        'bind9Image = ["\'](?<depName>internetsystemsconsortium/bind9):(?<currentValue>[^"\']+)["\']',
+      ],
+      datasourceTemplate: 'docker',
+    },
+  ],
+  packageRules: [
+    {
+      matchUpdateTypes: [
+        'major',
+      ],
+      groupName: null,
+    },
+    {
+      matchDatasources: [
+        'docker',
+      ],
+      matchPackageNames: [
+        'internetsystemsconsortium/bind9',
+      ],
+      allowedVersions: '<9.21',
+    },
+  ],
+}

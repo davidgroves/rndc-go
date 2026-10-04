@@ -1,0 +1,23 @@
+# Binaries
+/rndc-go
+/dist/
+/bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test / coverage
+coverage.out
+coverage.html
+*.coverprofile
+
+# IDE / env
+.env
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
